@@ -19,15 +19,15 @@ Route::get('/', function () {
 });
 
 Route::get("/posts", function () {
-    $posts = Post::all();
+    $posts = Post::where("is_published", true)->get();
 
     return view("posts", [
         "posts" => $posts,
     ]);
 });
 
-Route::get("/posts/{post}", function ($slug) {
-    $post = Post::findOrFail($slug);
+Route::get("/posts/{post:id}", function (Post $post) {
+    $post = Post::findOrFail($post->id);
 
     return view("post", [
         "post" => $post

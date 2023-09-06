@@ -2,69 +2,58 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Facades\File;
-use Spatie\YamlFrontMatter\YamlFrontMatter;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use \Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Post
+class Post extends Model
 {
-    public function __construct(
-        public string $img_src,
-        public string $category,
-        public string $title,
-        public string $slug,
-        public string $body,
-        public string $author,
-        public string $published_date
-    ) {
+    use HasFactory;
 
-    }
+    /**
+     * Declaring mass assignable fields
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        "user_id",
+        "category_id",
+        "title",
+        "body",
+    ];
 
-    public static function all()
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'published_at' => 'datetime',
+    ];
+
+    /**
+     * Get the user that owns the Post
+     *
+     * @return BelongsTo
+     */
+    public function user(): BelongsTo
     {
-        $files = File::files(resource_path("posts/"));
-
-        // Loop through each file,
-        // parse the file with yaml-front-matter,
-        // return an array of Post objects,
-        // and cache the result
-        $cache_ttl = 4;
-        $posts = cache()->remember("posts.all", $cache_ttl, function () use ($files) {
-            return collect($files)->map(function ($file) {
-                $document = YamlFrontMatter::parseFile($file);
-
-                return new Post(
-                    $img_src = $document->img_src,
-                    $category = $document->category,
-                    $title = $document->title,
-
-                    // TODO: Create a function for generating slugs from post titles
-                    $slug = $document->slug,
-                    $body = $document->body(),
-                    $author = $document->author,
-                    $published_date = $document->published_date
-                );
-            });
-        });
-
-        return $posts;
+        return $this->belongsTo(User::class);
     }
 
-    private static function find(string $slug)
+    /**
+     * Get the Category that belongs to the Post
+     *
+     * @return BelongsTo
+     */
+    public function category(): BelongsTo
     {
-        $posts = static::all();
-
-        return $posts->firstWhere(function ($post, $key) use ($slug) {
-            return $post->slug == $slug;
-        });
+        return $this->belongsTo(Category::class);
     }
 
-    public static function findOrFail(string $slug) {
-        $post = static::find($slug);
-
-        if(!$post) {
-            abort(404);
-        }
-
-        return $post;
+    private function createSlug(string $title): string
+    {
+        $title = strtolower($title);
+        return str_ireplace(" ", $title);
     }
 }

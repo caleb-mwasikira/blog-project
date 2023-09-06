@@ -14,8 +14,8 @@
     <section class="bg-white dark:bg-gray-900">
         <div class="container px-6 py-10 mx-auto">
             <div class="flex items-center justify-between mb-12">
-                <h1 class="text-2xl font-semibold text-gray-800 lg:text-3xl dark:text-white">
-                    Recent Posts
+                <h1 class="text-lg text-gray-800 lg:text-xl dark:text-white">
+                    Published Posts
                 </h1>
 
                 <button class="focus:outline-none">
@@ -32,36 +32,36 @@
                 @foreach ($posts as $post)
                     <div>
                         <img class="object-cover object-center w-full h-64 rounded-lg lg:h-80"
-                            src="<?= $post->img_src ?? '' ?>" alt="" />
+                            src="{{ $post->img_src ?? 'https://via.placeholder.com/640x480.png' }}" alt="" />
 
-                        <div class="mt-8">
-                            <span class="text-blue-500"><?= $post->category ?></span>
-
-                            <h1 class="mt-4 text-xl font-semibold text-gray-800 dark:text-white">
-                                <?= $post->title ?>
-                            </h1>
-
-                            <p class="mt-2 text-gray-500 dark:text-gray-400">
-                                <?= $post->body ?>
-                            </p>
-
+                        <div class="p-4">
                             <div class="flex items-center justify-between mt-4">
                                 <div>
                                     <a href="#"
-                                        class="text-lg font-medium text-gray-700 dark:text-gray-300 hover:underline hover:text-gray-500">
-                                        <?= $post->author ?>
+                                        class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:underline hover:text-gray-500">
+                                        {{ $post->user->username }}
                                     </a>
 
-                                    <p class="text-sm text-gray-500 dark:text-gray-400">
-                                        <?= $post->published_date ?>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400">
+                                        {{ $post->published_at->format("M d Y") }}
                                     </p>
                                 </div>
-
-                                <a href=<?= "/posts/" . $post->slug ?>
-                                    class="inline-block text-blue-500 underline hover:text-blue-400">
-                                    Read More
-                                </a>
+                                <span class="text-blue-500 text-sm">{{ $post->category->name }}</span>
                             </div>
+
+                            <h1 class="mt-4 text-xl font-semibold text-gray-800 dark:text-white">
+                                {{ $post->title }}
+                            </h1>
+
+
+                            <p class="mt-2 text-gray-500 dark:text-gray-400">
+                                {{ $post->body }}
+                            </p>
+
+                            <a href={{ 'posts/' . $post->id }}
+                                class="mt-4 flex justify-end inline-block text-blue-500 text-sm underline hover:text-blue-400">
+                                Read More
+                            </a>
                         </div>
                     </div>
                 @endforeach
