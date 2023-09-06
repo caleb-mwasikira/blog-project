@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -11,8 +12,24 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
 |
-*/
+ */
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get("/posts", function () {
+    $posts = Post::all();
+
+    return view("posts", [
+        "posts" => $posts,
+    ]);
+});
+
+Route::get("/posts/{post}", function ($slug) {
+    $post = Post::findOrFail($slug);
+
+    return view("post", [
+        "post" => $post
+    ]);
 });
