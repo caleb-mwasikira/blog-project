@@ -15,21 +15,21 @@ use Illuminate\Support\Facades\Route;
  */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Route::get("/posts", function () {
-    $posts = Post::where("is_published", true)->get();
-
-    return view("posts", [
+    $posts = Post::with(["user", "category"])->where("is_published", true)->get();
+    
+    return view("posts-view", [
         "posts" => $posts,
     ]);
 });
 
 Route::get("/posts/{post:id}", function (Post $post) {
-    $post = Post::findOrFail($post->id);
-
-    return view("post", [
+    $post = Post::with(["user", "category"])->findOrFail($post->id);
+    
+    return view("post-view", [
         "post" => $post
     ]);
 });
