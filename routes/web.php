@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Post;
+use App\View\Components\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,22 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::get('/', function () {
-    return view('index');
-});
-
-Route::get("/posts", function () {
-    $posts = Post::with(["user", "category"])->where("is_published", true)->get();
-    
-    return view("posts-view", [
-        "posts" => $posts,
-    ]);
-});
-
-Route::get("/posts/{post:id}", function (Post $post) {
-    $post = Post::with(["user", "category"])->findOrFail($post->id);
-    
-    return view("post-view", [
-        "post" => $post
-    ]);
-});
+Route::get('/', [PostController::class, 'index']);
+Route::get("/posts", [PostController::class, 'viewPosts']);
+Route::get("/posts/{post:id}", [PostController::class, 'viewPost']);
