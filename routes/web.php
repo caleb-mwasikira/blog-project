@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::get('/', [PostController::class, 'index']);
-Route::get("/posts", [PostController::class, 'viewPosts']);
-Route::get("/posts/{post:id}", [PostController::class, 'viewPost']);
+Route::get('/', function() {
+    return view("index");
+});
+
+Route::get("/posts", [PostController::class, 'index']);
+Route::get("/posts/{post:id}", [PostController::class, 'show']);

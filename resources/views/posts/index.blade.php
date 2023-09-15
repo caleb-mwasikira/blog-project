@@ -14,7 +14,7 @@
                     $count = 0;
                 @endphp
 
-                <x-post :isFeatured="true" :post="$featuredPost" />
+                <x-featured-post :post="$featuredPost" />
 
                 @while (!$posts->isEmpty())
                     @if ($count % 2 !== 0)

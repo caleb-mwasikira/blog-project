@@ -18,11 +18,6 @@ class PostController extends Component
 
     public function index()
     {
-        return view("index");
-    }
-
-    public function viewPosts()
-    {
         $posts = Post::published()
             ->filter([
                 "search" => request("search"),
@@ -30,16 +25,16 @@ class PostController extends Component
                 "author" => request("author"),
             ])->get();
 
-        return view("view-posts", [
+        return view("posts.index", [
             "posts" => $posts,
         ]);
     }
 
-    public function viewPost(Post $post)
+    public function show(Post $post)
     {
         $post = Post::published()->findOrFail($post->id);
 
-        return view("view-post", [
+        return view("posts.show", [
             "post" => $post,
         ]);
     }
