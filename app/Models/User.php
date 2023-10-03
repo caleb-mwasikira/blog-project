@@ -41,4 +41,20 @@ class User extends Authenticatable
     protected $casts = [
         'password' => 'hashed',
     ];
+
+    /**
+     * Mutator that automatically encrypts a user's password
+     * when the User model is saved
+     */
+    public function setPasswordAttribute(string $password) {
+        $this->attributes["password"] = bcrypt($password);
+    }
+
+    /**
+     * Accessor that automatically formats a user's username
+     * when the username attribute is accessed
+     */
+    public function getUsernameAttribute(string $username) {
+        return ucwords($username);
+    }
 }

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string("username")->unique();
             $table->string("email")->unique();
             $table->string("password");
-            $table->boolean("email_verified");
+            $table->boolean("email_verified")->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

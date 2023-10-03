@@ -1,21 +1,12 @@
 <?php
 
-namespace App\View\Components;
+namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Contracts\View\View;
-use Illuminate\View\Component;
 
-class PostController extends Component
+class PostController extends Controller
 {
-    /**
-     * Create a new component instance.
-     */
-    public function __construct()
-    {
-        //
-    }
-
     public function index()
     {
         $posts = Post::published()
@@ -37,10 +28,5 @@ class PostController extends Component
         return view("posts.show", [
             "post" => $post,
         ]);
-    }
-
-    public function render()
-    {
-        //
     }
 }

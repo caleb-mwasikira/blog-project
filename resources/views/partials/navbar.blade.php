@@ -6,12 +6,28 @@
     </div>
 
     <div class="mt-8 md:mt-0 flex space-x-4 items-center">
-        <a href="/" class="text-xs font-semibold uppercase hover:text-blue-500">Home Page</a>
+        @auth
+            <p class="text-xs font-semibold uppercase mr-5">Welcome back, {{ Auth::user()->username }}</p>
+        @endauth
+
         <a href="/posts" class="text-xs font-semibold uppercase hover:text-blue-500">View Posts</a>
 
-        <a href="#"
-            class="bg-blue-500 ml-3 rounded-full text-sm font-semibold text-white uppercase py-3 px-5">
-            Subscribe
-        </a>
+        @guest
+            <a href="/register" class="text-xs font-semibold uppercase hover:text-blue-500">Register</a>
+
+            <a href="/login" class="bg-blue-500 ml-3 rounded-full text-sm font-semibold text-white uppercase py-2 px-4">
+                Sign In
+            </a>
+        @endguest
+
+        @auth
+            <form action="/logout" method="POST">
+                @csrf
+                <button type="submit"
+                    class="bg-blue-500 rounded-full text-sm font-semibold text-white uppercase py-2 px-4">
+                    Logout
+                </button>
+            </form>
+        @endauth
     </div>
 </nav>
