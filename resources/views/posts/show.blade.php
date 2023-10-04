@@ -13,13 +13,7 @@
                         Published <time>{{ $post->published_at->diffForHumans() }}</time>
                     </p>
 
-                    <div class="flex items-center lg:justify-center text-sm mt-4">
-                        <img src="/images/lary-avatar.svg" alt="Lary avatar">
-                        <div class="ml-3 text-left">
-                            <p class="text-xs text-gray-500">Author</p>
-                            <h5 class="font-bold">{{ $post->user->username }}</h5>
-                        </div>
-                    </div>
+                    <x-user-profile :username="$post->user->username" />
                 </div>
 
                 <div class="col-span-8">
@@ -46,15 +40,17 @@
                         </div>
                     </div>
 
-                    <h1 class="font-bold text-3xl lg:text-4xl mb-10">
+                    <h1 class="font-semibold text-2xl mb-5">
                         {{ $post->title }}
                     </h1>
 
-                    <div class="space-y-4 lg:text-lg leading-loose">
+                    <div class="space-y-4 text-md">
                         {{ $post->body }}
                     </div>
                 </div>
             </article>
+
+            <x-comments-section :comments="$post->comments" />
         @endif
     </main>
 </x-layout>

@@ -1,6 +1,4 @@
-@props([
-    'post',
-])
+@props(['post'])
 
 <article
     class="transition-colors duration-300 hover:bg-gray-100 border border-black border-opacity-0 hover:border-opacity-5 rounded-xl">
@@ -33,13 +31,7 @@
             </div>
 
             <footer class="flex justify-between items-center mt-8">
-                <div class="flex items-center text-sm">
-                    <img src="/images/lary-avatar.svg" alt="Lary avatar">
-                    <div class="ml-3">
-                        <p class="text-xs text-gray-500">Author</p>
-                        <h5 class="font-bold">{{ $post->user->username }}</h5>
-                    </div>
-                </div>
+                <x-user-profile :username="$post->user->username" />
 
                 <div class="hidden lg:block">
                     <a href="/posts/{{ $post->id }}"
