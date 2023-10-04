@@ -1,3 +1,5 @@
+@section("title", "Login To Your Account")
+
 <x-layout>
     <!--
   This example requires some changes to your config:

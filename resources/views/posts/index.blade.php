@@ -1,4 +1,5 @@
 @props(['posts'])
+@section("title", "View Posts")
 
 <x-layout>
     @include('partials.header')

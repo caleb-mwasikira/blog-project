@@ -1,3 +1,5 @@
+@section("title", "Create New Account")
+
 <x-layout>
     <!--
   This example requires some changes to your config:
