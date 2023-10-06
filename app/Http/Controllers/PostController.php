@@ -7,7 +7,11 @@ use Illuminate\Contracts\View\View;
 
 class PostController extends Controller
 {
-    public function index()
+    /**
+     * Display all posts to the user
+     * 
+     */
+    public function view_all_posts()
     {
         $posts = Post::published()
             ->filter([
@@ -16,16 +20,20 @@ class PostController extends Controller
                 "author" => request("author"),
             ])->get();
 
-        return view("posts.index", [
+        return view("posts.view-all-posts", [
             "posts" => $posts,
         ]);
     }
 
-    public function show(Post $post)
+    /**
+     * Display a single post based on its id
+     * 
+     */
+    public function view_post(Post $post)
     {
         $post = Post::published()->findOrFail($post->id);
 
-        return view("posts.show", [
+        return view("posts.view-post", [
             "post" => $post,
         ]);
     }

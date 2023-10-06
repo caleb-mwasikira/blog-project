@@ -20,16 +20,16 @@ Route::get('/', function () {
     return view("index");
 });
 
-Route::get("/posts", [PostController::class, 'index']);
-Route::get("/posts/{post:id}", [PostController::class, 'show']);
+Route::get("/posts", [PostController::class, 'view_all_posts']);
+Route::get("/posts/{post:id}", [PostController::class, 'view_post']);
 
-Route::get("/register", [AuthController::class, "get_register_view"])
-    ->name("register")
+Route::get("/register", [AuthController::class, "view_register_page"])
+    ->name("view_register_page")
     ->middleware("guest");
 Route::post("/register", [AuthController::class, "register"]);
 
-Route::get("/login", [AuthController::class, "get_login_view"])
-    ->name("login")
+Route::get("/login", [AuthController::class, "view_login_page"])
+    ->name("view_login_page")
     ->middleware("guest");
 Route::post("/login", [AuthController::class, "login"]);
 

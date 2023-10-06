@@ -11,7 +11,7 @@ class AuthController extends Controller
     /**
      * Displays the register page view
      */
-    public function get_register_view()
+    public function view_register_page()
     {
         return view("auth.register");
     }
@@ -19,7 +19,7 @@ class AuthController extends Controller
     /**
      * Displays the login page view
      */
-    public function get_login_view()
+    public function view_login_page()
     {
         return view("auth.login");
     }
@@ -39,7 +39,7 @@ class AuthController extends Controller
         $user->save();
 
         return redirect()
-            ->route("login")
+            ->route("view_login_page")
             ->with("success", "Your account has been created");
     }
 
