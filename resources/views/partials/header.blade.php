@@ -7,7 +7,7 @@
         Latest <span class="text-blue-500">Blogs and News</span> From Laracasts
     </h1>
 
-    <h2 class="inline-flex mt-2">By Lary Laracore <img src="/images/lary-head.svg" alt="Head of Lary the mascot"></h2>
+    <h2 class="inline-flex mt-2 text-sm">By Lary Laracore <img src="/images/lary-head.svg" alt="Head of Lary the mascot"></h2>
 
     <p class="text-sm mt-14">
         Another year. Another update. We're refreshing the popular Laravel series with new content.

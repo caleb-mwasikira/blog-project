@@ -5,24 +5,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>@yield("title", "Blog App")</title>
+    <title>@yield('title', 'Blog App')</title>
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/index.css">
 
-    <!-- CSS -->
+    <!-- CSS src="https://cdn.tailwindcss.com" -->
     <link rel="stylesheet" href="/css/tailwind.min.css">
-    {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
 
-    <!-- AlpineJS -->
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- AlpineJS src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" -->
     <script defer src="/js/alpine.js"></script>
 </head>
 
-<body
-    style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"
-    class="px-6 py-8">
+<body class="px-6 py-8">
 
     @include('partials.navbar')
 

@@ -16,19 +16,19 @@
                 </div>
 
                 <div class="my-2">
-                    <h1 class="text-xl font-semibold">
+                    <h1 class="text-lg font-semibold">
                         {{ $post->title }}
                     </h1>
 
                     <span class="block text-gray-400 text-xs">
-                        Published <time>{{ $post->published_at->diffForHumans() }}</time>
+                        <p>Published <time>{{ $post->published_at->diffForHumans() }}</time></p>
                     </span>
                 </div>
             </header>
 
-            <div class="text-md">
+            <p class="text-sm">
                 {{ $post->body }}
-            </div>
+            </p>
 
             <footer class="flex justify-between items-center mt-8">
                 <x-user-profile :username="$post->user->username" />

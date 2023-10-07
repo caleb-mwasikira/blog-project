@@ -45,9 +45,9 @@
                         {{ $post->title }}
                     </h1>
 
-                    <div class="space-y-4 text-md">
+                    <p class="space-y-4 text-md">
                         {{ $post->body }}
-                    </div>
+                    </p>
                 </div>
             </article>
 
