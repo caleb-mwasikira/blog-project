@@ -17,7 +17,7 @@ class PostFactory extends Factory
      */
     public function definition(): array
     {
-        $userIds = DB::table('users')->pluck('id');
+        $userIds = DB::table('users')->where("role", "author")->pluck("id");
         $categoryIds = DB::table('categories')->pluck('id');
         $isPublished = fake()->boolean();
         $publishedDate = $isPublished ? fake()->dateTime()->format('Y-m-d H:i:s') : null;

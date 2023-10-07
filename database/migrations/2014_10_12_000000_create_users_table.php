@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string("email")->unique();
             $table->string("password");
             $table->boolean("email_verified")->default(false);
+            $table->string("role")->default("reader");
             $table->rememberToken();
             $table->timestamps();
         });
