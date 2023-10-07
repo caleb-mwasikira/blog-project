@@ -17,6 +17,7 @@
 
     <!-- AlpineJS -->
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="/js/alpine.js"></script>
 </head>
 
 <body
@@ -56,9 +57,17 @@
 
     {{-- AlpineJS code hides the success flash message after n seconds --}}
     @if (session('success'))
-        <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 4000)" x-show="show"
-            class="absolute bottom-5 right-5 text-white text-bold text-sm px-2 py-2 w-64 text-center rounded-sm bg-blue-500">
+        <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 8000)" x-show="show"
+            class="absolute bottom-5 right-5 text-white text-bold text-sm px-2 py-2 text-center rounded-sm bg-blue-500">
             <p>{{ session('success') }}</p>
+        </div>
+    @endif
+
+    {{-- AlpineJS code hides the fail flash message after n seconds --}}
+    @if (session('fail'))
+        <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 8000)" x-show="show"
+            class="absolute bottom-5 right-5 text-white text-bold text-sm px-2 py-2 text-center rounded-sm bg-red-500">
+            <p>{{ session('fail') }}</p>
         </div>
     @endif
 </body>
