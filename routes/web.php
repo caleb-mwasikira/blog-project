@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\PostEditor;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
@@ -18,21 +19,61 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view("index");
+})->name("home");
+
+/**
+ * Post routes
+ */
+
+// TODO: Add middleware that prevents users from reaching
+// certain endpoints if they are not of a specific role
+
+Route::middleware(["auth"])->group(function () {
+    Route::get("/posts/add", [PostEditor::class, "view_create_post_form"])
+        ->name("view-create-post");
+    Route::post("/posts", [PostController::class, "create_post"])
+        ->name("create-post");
+
+    Route::get("/my-posts", [PostController::class, "my_posts"])
+        ->name("view-my-posts");
+    Route::get("/my-posts/{post:id}", [PostController::class, "view_post"])
+        ->name("view-my-post");
+
+    Route::get("/posts/edit/{post:id}", [PostEditor::class, "view_edit_post_form"])
+        ->name("view-edit-post");
+    Route::post("/posts/editor", [PostEditor::class, "handle_submit"])
+        ->name("post-editor");
+    Route::post("/posts/{post:id}", [PostController::class, "edit_post"])
+        ->name("edit-post");
+
+    Route::delete("/posts/{post:id}", [PostController::class, "delete_post"])
+        ->name("delete-post");
 });
 
-Route::get("/posts", [PostController::class, 'view_all_posts']);
-Route::get("/posts/{post:id}", [PostController::class, 'view_post']);
+Route::get("/posts", [PostController::class, 'view_all_posts'])
+    ->name("view-all-posts");
+Route::get("/posts/{post:id}", [PostController::class, 'view_post'])
+    ->name("view-post");
 
-Route::get("/register", [AuthController::class, "view_register_page"])
-    ->name("view_register_page")
+/**
+ * Authentication routes
+ */
+
+Route::get("/register", function () {
+    return view("auth.register");
+})
+    ->name("register")
     ->middleware("guest");
 Route::post("/register", [AuthController::class, "register"]);
 
-Route::get("/login", [AuthController::class, "view_login_page"])
-    ->name("view_login_page")
+Route::get("/login", function () {
+    return view("auth.login");
+})
+    ->name("login")
     ->middleware("guest");
 Route::post("/login", [AuthController::class, "login"]);
 
-Route::post("/logout", [AuthController::class, "logout"]);
+Route::post("/logout", [AuthController::class, "logout"])
+    ->name("logout");
 
 // TODO: Implement the forgot-password feature

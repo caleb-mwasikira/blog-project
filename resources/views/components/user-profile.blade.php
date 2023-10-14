@@ -9,7 +9,7 @@
         alt="User profile">
     
     <div class="ml-3 text-left">
-        <h1 class="text-sm text-gray-700 dark:text-gray-200">{{ $username }}</h1>
+        <p class="text-sm text-gray-700 dark:text-gray-200 w-32">{{ $username }}</p>
         <p class="text-xs text-gray-500 dark:text-gray-400">{{ $title }}</p>
     </div>
 </div>

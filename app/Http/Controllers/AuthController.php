@@ -9,22 +9,6 @@ use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
     /**
-     * Displays the register page view
-     */
-    public function view_register_page()
-    {
-        return view("auth.register");
-    }
-
-    /**
-     * Displays the login page view
-     */
-    public function view_login_page()
-    {
-        return view("auth.login");
-    }
-
-    /**
      * Creates a new user account
      */
     public function register(Request $request)
@@ -38,8 +22,7 @@ class AuthController extends Controller
         $user = new User($credentials);
         $user->save();
 
-        return redirect()
-            ->route("view_login_page")
+        return to_route("login")
             ->with("success", "Your account has been created");
     }
 
@@ -55,7 +38,8 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect("/")->with("success", "You are now logged in");
+            return to_route("view-all-posts")
+                ->with("success", "You are now logged in");
         }
 
         return back()->withErrors([
@@ -72,6 +56,7 @@ class AuthController extends Controller
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect("/")->with("success", "You have logged out of your account");
+        return to_route("view-all-posts")
+            ->with("success", "You have logged out of your account");
     }
 }

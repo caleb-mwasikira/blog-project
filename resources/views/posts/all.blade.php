@@ -2,9 +2,7 @@
 @section("title", "View Posts")
 
 <x-layout>
-    @include('partials.header')
-
-    <main class="max-w-6xl mx-auto mt-6 lg:mt-20 space-y-6">
+    <main class="max-w-6xl mx-auto mt-8 space-y-6">
         @if ($posts->isEmpty())
             <p class="text-center text-sm">No posts here. Please try again later</p>
         @else
@@ -15,7 +13,7 @@
                     $count = 0;
                 @endphp
 
-                <x-featured-post :post="$featuredPost" />
+                <x-posts.featured :post="$featuredPost" />
 
                 @while (!$posts->isEmpty())
                     @if ($count % 2 !== 0)
@@ -25,7 +23,7 @@
 
                         <div class="lg:grid lg:grid-cols-2">
                             @foreach ($postsSection as $post)
-                                <x-post :post="$post" />
+                                <x-posts.card :post="$post" />
                             @endforeach
                         </div>
                     @else
@@ -35,7 +33,7 @@
 
                         <div class="lg:grid lg:grid-cols-3">
                             @foreach ($postsSection as $post)
-                                <x-post :post="$post" />
+                                <x-posts.card :post="$post" />
                             @endforeach
                         </div>
                     @endif

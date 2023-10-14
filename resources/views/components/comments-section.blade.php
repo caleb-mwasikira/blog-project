@@ -8,7 +8,9 @@
     </h1>
 
     @if ($comments->isEmpty())
-        <p class="text-center text-sm">There are no comments for this post</p>
+        <div class="col-span-12 bg-white dark:bg-gray-900 mt-12 text-center">
+            <p class="text-center text-sm">There are no comments for this post</p>
+        </div>
     @else
         @foreach ($comments as $comment)
             <div class="col-span-8 bg-white dark:bg-gray-900 mt-6">
