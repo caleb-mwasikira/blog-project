@@ -34,7 +34,7 @@
                 </header>
 
                 <footer class="flex justify-between items-center mt-8">
-                    <x-user-profile :username="$post->user->username" />
+                    <x-user-profile :user="$post->user" />
 
                     <div class="hidden lg:block">
                         <a href="{{ route('view-post', ['post' => $post->id]) }}"

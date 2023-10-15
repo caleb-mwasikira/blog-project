@@ -15,7 +15,7 @@
                     <img src="/images/illustration-1.png" alt="" class="rounded-xl">
 
                     <x-posts.published-at :publishedAt="$post->published_at" />
-                    <x-user-profile :username="$post->user->username" />
+                    <x-user-profile :user="$post->user" />
                 </div>
 
                 <div class="col-span-8">

@@ -14,7 +14,7 @@
     @else
         @foreach ($comments as $comment)
             <div class="col-span-8 bg-white dark:bg-gray-900 mt-6">
-                <x-user-profile :username="$comment->user->username" />
+                <x-user-profile :user="$comment->user" />
 
                 <p class="mt-3 w-3/4 justify-end text-sm text-gray-500 md:text-sm">
                     {{ $comment->body }}
