@@ -10,7 +10,7 @@
                 <img src="/images/illustration-1.png" alt="" class="rounded-xl">
 
                 <x-posts.published-at :publishedAt="$post?->published_at" />
-                <x-user-profile :username="Auth::user()->username" />
+                <x-user-profile :user="Auth::user()" />
             </div>
 
             <form action="{{ route('post-editor') }}" method="POST" class="col-span-8 w-4/5 mt-12 mx-auto">
@@ -29,7 +29,7 @@
 
                         <input type="text" name="title" placeholder="Enter post title"
                             value="{{ old('title') ?? $post?->title }}" required
-                            class="block mt-2 w-full text-sm placeholder-gray-400/70 dark:placeholder-gray-500 rounded-lg border bg-white px-2 py-2.5 text-gray-700 focus:outline-none focus:ring dark:bg-gray-900 dark:text-gray-300" />
+                            class="block mt-2 w-full text-sm font-mono placeholder-gray-500 dark:placeholder-gray-500 rounded-lg border bg-white px-3 py-2.5 text-gray-700 focus:outline-none focus:ring dark:bg-gray-900 dark:text-gray-300" />
 
                         @error('title')
                             <p class="text-xs text-red-400 font-semibold">{{ $message }}</p>
@@ -42,9 +42,9 @@
                         </label>
 
                         <textarea name="body" placeholder="Write your post here" minlength="50" required
-                            class="block mt-2 w-full leading-0 placeholder-gray-400/70 dark:placeholder-gray-500 rounded-lg border border-gray-200 bg-white px-4 h-32 py-2.5 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300">{{ old('body') ?? trim($post?->body) }}</textarea>
+                            class="block mt-2 w-full text-sm leading-0 font-mono placeholder-gray-500 dark:placeholder-gray-500 rounded-lg border border-gray-200 bg-white px-3 h-32 py-2.5 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300">{{ old('body') ?? trim($post?->body) }}</textarea>
 
-                        <p class="mt-3 text-xs text-gray-400 dark:text-gray-600">
+                        <p class="mt-2 text-xs text-gray-400 dark:text-gray-600">
                             A minimum of 50 characters required to publish a post
                         </p>
 

@@ -62,7 +62,7 @@
                 </div>
             </article>
 
-            <x-comments-section :comments="$post->comments" />
+            <x-comments.all :comments="$post->comments" />
         @endisset
     </main>
 </x-layout>

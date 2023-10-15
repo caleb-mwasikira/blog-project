@@ -55,7 +55,7 @@
     @if (session('success'))
         <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 8000)" x-show="show"
             class="absolute bottom-5 right-5 text-white text-bold text-sm px-6 py-2 text-center rounded-full bg-green-500">
-            <p>{{ session('success') }}</p>
+            <p class="font-mono">{{ session('success') }}</p>
         </div>
     @endif
 
@@ -63,7 +63,7 @@
     @if (session('fail'))
         <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 8000)" x-show="show"
             class="absolute bottom-5 right-5 text-white text-bold text-sm px-6 py-2 text-center rounded-full bg-red-500">
-            <p>{{ session('fail') }}</p>
+            <p class="font-mono">{{ session('fail') }}</p>
         </div>
     @endif
 </body>
