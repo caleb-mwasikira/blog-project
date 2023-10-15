@@ -47,7 +47,7 @@ class PostController extends Controller
 
     public function create_post(Request $request)
     {
-        if (!Gate::check("create", Post::class)) {
+        if (!Gate::check("create-post", Post::class)) {
             return to_route("view-all-posts")
                 ->with("fail", "Cannot create a post as you are not signed in as an author");
         }
@@ -96,7 +96,7 @@ class PostController extends Controller
      */
     public function my_posts(Request $request)
     {
-        if (!Gate::check("create", Post::class)) {
+        if (!Gate::check("create-post", Post::class)) {
             return to_route("view_all_posts")
                 ->with("fail", "You do not have any created posts as you are not signed in as an author");
         }

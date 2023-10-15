@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostEditor;
 use App\Models\Post;
@@ -54,6 +55,17 @@ Route::get("/posts", [PostController::class, 'view_all_posts'])
     ->name("view-all-posts");
 Route::get("/posts/{post:id}", [PostController::class, 'view_post'])
     ->name("view-post");
+
+/**
+ * Comments routes
+ */
+Route::get("/posts/{post:id}/comments", function (Post $post) {
+    return redirect()
+        ->to(route("view-post", ["post" => $post->id]) . "#comments");
+});
+Route::post("/posts/{post:id}/comments", [CommentController::class, "create_comment"])
+    ->name("create-comment")
+    ->middleware("auth");
 
 /**
  * Authentication routes

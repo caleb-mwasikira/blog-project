@@ -6,7 +6,7 @@
     </div>
 
     <div class="mt-8 md:mt-0 flex space-x-4 items-center">
-        @can('create')
+        @can('create-post')
             <a href="{{ route('view-create-post') }}" class="text-xs font-semibold uppercase hover:text-blue-500">Create Post</a>
             <a href="{{ route('view-my-posts') }}" class="text-xs font-semibold uppercase hover:text-blue-500">My Posts</a>
         @endcan
