@@ -47,7 +47,7 @@ class PostController extends Controller
 
     public function create_post(Request $request)
     {
-        if (!Gate::check("create-post", Post::class)) {
+        if (!Gate::check("create-post")) {
             return to_route("view-all-posts")
                 ->with("fail", "Cannot create a post as you are not signed in as an author");
         }

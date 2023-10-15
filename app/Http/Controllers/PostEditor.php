@@ -14,7 +14,7 @@ class PostEditor extends PostController
      */
     public function view_create_post_form()
     {
-        if (!Gate::check("create", Post::class)) {
+        if (!Gate::check("create-post")) {
             return to_route("view-all-posts")
                 ->with("fail", "Cannot create a post as you are not signed in as an author");
         }
