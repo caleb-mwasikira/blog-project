@@ -1,11 +1,11 @@
 @font-face {
     font-family: "Catamaran";
-    src: url("/fonts/static/Catamaran-Regular.ttf");
+    src: url("/fonts/Catamaran/Catamaran-Regular.ttf");
 }
 
 @font-face {
     font-family: "Catamaran Bold";
-    src: url("/fonts/static/Catamaran-Bold.ttf");
+    src: url("/fonts/Catamaran/Catamaran-Bold.ttf");
 }
 
 body, h1, h2, h3, h4, h5, h6, p {

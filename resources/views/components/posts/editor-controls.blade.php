@@ -9,7 +9,7 @@
         <button type="submit" name="submit_btn" value="new_post"
             class="flex items-center px-4 py-2 text-sm font-medium text-gray-600 transition-colors duration-200 sm:text-base sm:px-6 dark:hover:bg-gray-800 dark:text-gray-300 gap-x-3 hover:bg-gray-100">
             <img src="/icons/add-document.svg" alt="Create New Post Icon" class="w-4 h-4" />
-            <span class="text-sm font-semibold" style="font-family: 'Space Mono'">New Post</span>
+            <span class="text-sm font-semibold">New Post</span>
         </button>
     @endif
 
@@ -20,14 +20,14 @@
         <button type="submit" name="submit_btn" value="edit_post"
             class="flex items-center w-full px-4 py-2 text-sm font-medium text-gray-600 transition-colors duration-200 sm:text-base sm:px-6 dark:hover:bg-gray-800 dark:text-gray-300 gap-x-3 hover:bg-gray-100">
             <img src="/icons/disk.svg" alt="View Post Icon" class="w-4 h-4" />
-            <span class="text-sm font-semibold" style="font-family: 'Space Mono'">Save</span>
+            <span class="text-sm font-semibold">Save</span>
         </button>
 
         {{-- View post --}}
         <a href="{{ route('view-post', ['post' => $post->id]) }}"
             class="flex items-center w-full px-4 py-2 text-sm font-medium text-gray-600 transition-colors duration-200 sm:text-base sm:px-6 dark:hover:bg-gray-800 dark:text-gray-300 gap-x-3 hover:bg-gray-100">
             <img src="/icons/eye.svg" alt="View Post Icon" class="w-4 h-4" />
-            <span class="text-sm font-semibold" style="font-family: 'Space Mono'">View</span>
+            <span class="text-sm font-semibold">View</span>
         </a>
 
         @if (!$post->is_published)
@@ -35,7 +35,7 @@
             <button type="submit" name="submit_btn" value="publish_post"
                 class="flex items-center w-full px-4 py-2 text-sm font-medium text-gray-600 transition-colors duration-200 sm:text-base sm:px-6 dark:hover:bg-gray-800 dark:text-gray-300 gap-x-3 hover:bg-gray-100">
                 <img src="/icons/box.svg" alt="Publish Post Icon" class="w-4 h-4" />
-                <span class="text-sm font-semibold" style="font-family: 'Space Mono'">Publish</span>
+                <span class="text-sm font-semibold">Publish</span>
             </button>
         @endif
 
@@ -43,7 +43,7 @@
         <button x-on:click="isModalOpen = true" type="button" name="submit_btn" value="delete_post"
             class="flex items-center w-full px-4 py-2 text-sm font-medium text-gray-600 transition-colors duration-200 sm:text-base sm:px-6 dark:hover:bg-gray-800 dark:text-gray-300 gap-x-3 hover:bg-gray-100">
             <img src="/icons/trash.svg" alt="Publish Post Icon" class="w-4 h-4" />
-            <span class="text-sm font-semibold" style="font-family: 'Space Mono'">Delete</span>
+            <span class="text-sm font-semibold">Delete</span>
         </button>
 
         <div role="dialog" tabindex="-1" x-show="isModalOpen" x-on:click.away="isModalOpen = false" x-cloak x-transition
