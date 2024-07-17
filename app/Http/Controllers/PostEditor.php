@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -49,24 +48,19 @@ class PostEditor extends PostController
         switch ($request->input("submit_btn")) {
             case "new_post":
                 return $this->create_post($request);
-                break;
 
             case "edit_post":
                 return $this->edit_post($request, null);
-                break;
 
             case "publish_post":
                 return $this->publish_post($request, null);
-                break;
 
             case "delete_post":
                 return $this->delete_post($request, null);
-                break;
 
             default:
                 return back()
                     ->with("fail", "Undefined user action");
-                break;
         }
     }
 }

@@ -27,7 +27,7 @@ class PostController extends Controller
                 $mode == "create" ? "unique:posts" : "",
                 "min:10", "max:255",
             ],
-            "body" => "required|min:50",
+            "body" => "required|min:10",
             "category" => ["required", Rule::in($categoryNames)],
         ]);
 
@@ -97,8 +97,8 @@ class PostController extends Controller
     public function my_posts(Request $request)
     {
         if (!Gate::check("create-post", Post::class)) {
-            return to_route("view_all_posts")
-                ->with("fail", "You do not have any created posts as you are not signed in as an author");
+            return to_route("view-all-posts")
+                ->with("fail", "You are not signed in as an author");
         }
 
         $posts = Post::filter([
@@ -137,7 +137,7 @@ class PostController extends Controller
         $post_id = $post?->id ?? $request->input("post_id");
         $post = Post::findOrFail($post_id);
 
-        $response = Gate::inspect("update", $post, $responseMsg = "Cannot publish post that you do not own");
+        $response = Gate::inspect("update", $post);
 
         if (!$response->allowed()) {
             return to_route("view-edit-post", [

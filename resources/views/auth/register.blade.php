@@ -1,28 +1,6 @@
 @section('title', 'Create New Account')
 
 <x-layout>
-    <!--
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
--->
-    <!--
-  This example requires updating your template:
-
-  ```
-  <html class="h-full bg-white">
-  <body class="h-full">
-  ```
--->
     <main class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
         <h2 class="mt-5 text-center text-2xl leading-9 tracking-tight text-gray-900">
             Create a new account

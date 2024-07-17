@@ -41,7 +41,7 @@
                             Post Body
                         </label>
 
-                        <textarea name="body" placeholder="Write your post here" minlength="50" required
+                        <textarea name="body" placeholder="Write your post here" minlength="10" required
                             class="block mt-2 w-full text-md leading-0 placeholder-gray-500 dark:placeholder-gray-500 rounded-lg border border-gray-200 bg-white px-3 h-32 py-2.5 text-gray-700 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300">{{ old('body') ?? trim($post?->body) }}</textarea>
 
                         <p class="mt-2 text-xs text-gray-400 dark:text-gray-600">

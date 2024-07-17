@@ -6,10 +6,10 @@
     </div>
 
     <div class="mt-8 md:mt-0 flex space-x-4 items-center">
-        @can('create-post')
+        @auth
             <a href="{{ route('view-create-post') }}" class="text-xs font-semibold uppercase hover:text-blue-500">Create Post</a>
             <a href="{{ route('view-my-posts') }}" class="text-xs font-semibold uppercase hover:text-blue-500">My Posts</a>
-        @endcan
+        @endauth
 
         <a href="{{ route('view-all-posts') }}" class="text-xs font-semibold uppercase hover:text-blue-500">
             View Posts

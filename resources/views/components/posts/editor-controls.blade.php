@@ -11,9 +11,8 @@
             <img src="/icons/add-document.svg" alt="Create New Post Icon" class="w-4 h-4" />
             <span class="text-sm font-semibold">New Post</span>
         </button>
-    @endif
 
-    @isset($post)
+    @else
         <input type="hidden" name="post_id" value="{{ $post->id }}">
 
         {{-- Update post-data --}}
@@ -88,5 +87,5 @@
                 </div>
             </div>
         </div>
-    @endisset
+    @endif
 </div>
